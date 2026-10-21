@@ -1,0 +1,89 @@
+body {
+    background-color: #0b0b0b;
+    font-family: 'Courier New', Courier, monospace;
+    user-select: none;
+}
+
+.omori-stage {
+    width: 760px;
+    height: 500px;
+    background-image: url('images/background1.png');
+    background-size: cover;
+    background-position: center;
+    border: 4px solid #fff;
+    position: relative;
+}
+
+.hero-status-card {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 140px;
+    background: #d4d0c8;
+    border: 3px solid #000;
+    box-shadow: 3px 3px 0px #000;
+    font-size: 0.8rem;
+}
+
+.status-header {
+    background: #000;
+    color: #fff;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+}
+
+.enemy-sprite {
+    max-height: 220px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.enemy-scale {
+    transform: scale(1.15);
+}
+
+@keyframes shake {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    20% { transform: translate(-8px, 4px) rotate(-3deg); }
+    40% { transform: translate(8px, -4px) rotate(3deg); }
+    60% { transform: translate(-6px, -2px) rotate(-1deg); }
+    80% { transform: translate(6px, 2px) rotate(1deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.shake-animation {
+    animation: shake 0.4s ease-in-out;
+}
+
+.omori-bottom-panel {
+    background: rgba(0, 0, 0, 0.85);
+    border-top: 3px solid #fff;
+}
+
+.omori-log {
+    background-color: #111;
+    border: 2px solid #555;
+    height: 45px;
+    font-size: 0.9rem;
+    overflow: hidden;
+}
+
+.omori-action-btn {
+    background-color: #1c1c1c;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 0px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.1s;
+}
+
+.omori-action-btn:hover:not(:disabled) {
+    background-color: #fff;
+    color: #000;
+}
+
+.omori-action-btn:disabled {
+    background-color: #333;
+    color: #777;
+    border-color: #555;
+}
