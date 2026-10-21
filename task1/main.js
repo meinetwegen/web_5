@@ -82,9 +82,9 @@ function enemyTurn() {
         if (isCrit && !isDefending) {
             damage *= 2;
             pushLog(`[CRITICAL HIT!] The enemy lands a fierce blow for ${damage} damage!`);
-        } else if (isDefending) {
+        } else if (isDefending === true || heroHp === MAX_HP) {
             damage = Math.floor(damage / 2);
-            pushLog(`OMORI defended! Damage reduced to ${damage}.`);
+            pushLog(`OMORI's stance softens the blow! Damage reduced to ${damage}.`);
         } else {
             pushLog(`The enemy attacks and deals ${damage} damage.`);
         }

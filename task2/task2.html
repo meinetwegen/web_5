@@ -10,8 +10,9 @@
 </head>
 <body class="d-flex justify-content-center align-items-center min-vh-100 m-0">
 
-    <div class="player-card shadow-lg position-relative overflow-hidden d-flex flex-column">
-        <div class="row g-0 flex-grow-1">
+    <div class="player-card shadow-lg position-relative overflow-hidden d-flex flex-column justify-content-between">
+        
+        <div class="row g-0 flex-grow-1 overflow-hidden">
             <div class="col-12 col-md-5 player-header text-center p-4 d-flex flex-column justify-content-center align-items-center">
                 <div class="w-100 d-flex justify-content-between align-items-center text-white-50 mb-3">
                     <i class="bi bi-chevron-left fs-5"></i>
@@ -19,8 +20,8 @@
                     <i class="bi bi-list fs-4"></i>
                 </div>
 
-                <h2 class="album-title text-white fw-bold mb-1" id="albumName">912 Album</h2>
-                <p class="album-artist text-white-50 small mb-4" id="albumArtist">Singer#1</p>
+                <h2 class="album-title text-white fw-bold mb-1" id="albumName">505 Album</h2>
+                <p class="album-artist text-white-50 small mb-4" id="albumArtist">Various Artists</p>
 
                 <div class="cover-wrapper mx-auto position-relative">
                     <div class="vinyl-record" id="vinylRecord"></div>
@@ -33,12 +34,16 @@
                 </div>
             </div>
 
-            <div class="col-12 col-md-7 playlist-container p-3 d-flex flex-column justify-content-center">
-                <div id="playlist" class="list-group list-group-flush"></div>
+            <div class="col-12 col-md-7 playlist-wrapper p-3 d-flex flex-column">
+                <div id="alertContainer" class="mb-1"></div>
+                <div id="searchContainer" class="mb-2"></div>
+                <div class="playlist-container flex-grow-1 overflow-y-auto">
+                    <div id="playlist" class="list-group list-group-flush"></div>
+                </div>
             </div>
         </div>
 
-        <div class="player-controls-panel p-3 border-top border-secondary text-white">
+        <div class="player-controls-panel p-3 border-top border-secondary text-white w-100">
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <div class="text-truncate me-2">
                     <div id="currentTrackTitle" class="fw-bold small text-truncate">Select a track</div>
