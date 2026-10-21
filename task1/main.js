@@ -31,8 +31,12 @@ function updateUI() {
     heroHpText.textContent = `${heroHp}/100`;
     heroHpBar.style.width = `${Math.max(0, heroHp)}%`;
     
-    enemyHpText.textContent = `${enemyHp}/100`;
-    enemyHpBar.style.width = `${Math.max(0, enemyHp)}%`;
+    if (enemyHpText) {
+        enemyHpText.textContent = `${enemyHp}/100`;
+    }
+    if (enemyHpBar) {
+        enemyHpBar.style.width = `${Math.max(0, enemyHp)}%`;
+    }
     
     healCountSpan.textContent = healsLeft;
 
@@ -44,7 +48,9 @@ function updateUI() {
 }
 
 function pushLog(message) {
-    logBox.textContent = message;
+    if (logBox) {
+        logBox.textContent = message;
+    }
 }
 
 function shakeElement(element) {
@@ -62,7 +68,9 @@ function enemyTurn() {
 
     setTimeout(() => {
         enemyImage.classList.remove('enemy-scale');
-        enemyImage.src = 'images/enemy.png';
+        if (enemyHp > 0) {
+            enemyImage.src = 'images/enemy.png';
+        }
 
         let damage = getRandomInt(ENEMY_MIN_ATK, ENEMY_MAX_ATK);
         let isCrit = Math.random() < CRIT_CHANCE;
@@ -123,7 +131,9 @@ document.getElementById('attackBtn').addEventListener('click', () => {
     updateUI();
 
     setTimeout(() => {
-        if (enemyHp > 0) enemyImage.src = 'images/enemy.png';
+        if (enemyHp > 0) {
+            enemyImage.src = 'images/enemy.png';
+        }
         
         if (!checkGameOver()) {
             setTimeout(enemyTurn, 500);
