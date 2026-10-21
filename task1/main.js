@@ -11,6 +11,7 @@ let heroHp = MAX_HP;
 let enemyHp = MAX_HP;
 let healsLeft = MAX_HEALS;
 let isDefending = false;
+let isBusy = false;
 
 const heroHpText = document.getElementById('heroHpText');
 const heroHpBar = document.getElementById('heroHpBar');
@@ -61,7 +62,10 @@ function shakeElement(element) {
 }
 
 function enemyTurn() {
-    if (checkGameOver()) return;
+    if (checkGameOver()) {
+        isBusy = false;
+        return;
+    }
 
     enemyImage.classList.add('enemy-scale');
     enemyImage.src = 'images/enemy_attack.png';
@@ -96,7 +100,9 @@ function enemyTurn() {
         if (heroHp <= 0) {
             heroImage.src = 'images/omori_hurt.png';
         }
+        
         checkGameOver();
+        isBusy = false;
     }, 500);
 }
 
@@ -119,6 +125,9 @@ function checkGameOver() {
 }
 
 document.getElementById('attackBtn').addEventListener('click', () => {
+    if (isBusy) return;
+    isBusy = true;
+
     let damage = getRandomInt(HERO_MIN_ATK, HERO_MAX_ATK);
     
     enemyImage.src = 'images/enemy_hurt.png';
@@ -137,21 +146,31 @@ document.getElementById('attackBtn').addEventListener('click', () => {
         
         if (!checkGameOver()) {
             setTimeout(enemyTurn, 500);
+        } else {
+            isBusy = false;
         }
     }, 400);
 });
 
 document.getElementById('defendBtn').addEventListener('click', () => {
+    if (isBusy) return;
+    isBusy = true;
+
     isDefending = true;
     pushLog("OMORI takes a defensive stance.");
 
     if (!checkGameOver()) {
         setTimeout(enemyTurn, 400);
+    } else {
+        isBusy = false;
     }
 });
 
 document.getElementById('healBtn').addEventListener('click', () => {
+    if (isBusy) return;
+
     if (healsLeft > 0 && heroHp < MAX_HP) {
+        isBusy = true;
         heroHp += HEAL_AMOUNT;
         if (heroHp > MAX_HP) heroHp = MAX_HP;
         healsLeft--;
@@ -160,6 +179,8 @@ document.getElementById('healBtn').addEventListener('click', () => {
 
         if (!checkGameOver()) {
             setTimeout(enemyTurn, 400);
+        } else {
+            isBusy = false;
         }
     } else {
         pushLog("Cannot heal: HP is full or no charges remain!");
@@ -171,6 +192,7 @@ document.getElementById('restartBtn').addEventListener('click', () => {
     enemyHp = MAX_HP;
     healsLeft = MAX_HEALS;
     isDefending = false;
+    isBusy = false;
     
     heroImage.src = 'images/omori.png';
     enemyImage.src = 'images/enemy.png';

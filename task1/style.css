@@ -53,7 +53,8 @@ body {
 
 @media (min-width: 992px) {
     .enemy-sprite {
-        max-height: 52vh; 
+        height: 85vh;
+        max-height: none;
     }
 }
 
