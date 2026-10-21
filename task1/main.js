@@ -85,9 +85,10 @@ function enemyTurn() {
         isDefending = false;
         updateUI();
 
-        if (checkGameOver()) {
-            if (heroHp <= 0) heroImage.src = 'images/omori_hurt.png';
+        if (heroHp <= 0) {
+            heroImage.src = 'images/omori_hurt.png';
         }
+        checkGameOver();
     }, 500);
 }
 
