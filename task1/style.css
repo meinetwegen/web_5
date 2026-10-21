@@ -34,7 +34,7 @@ body {
 }
 
 .enemy-sprite {
-    max-height: 380px; 
+    max-height: 800px; 
     transition: transform 0.2s ease-in-out;
 }
 
