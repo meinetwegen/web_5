@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Album Playlist - Task 2</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="d-flex justify-content-center align-items-center min-vh-100 m-0">
+
+    <div class="player-card shadow-lg position-relative overflow-hidden d-flex flex-column">
+        <div class="row g-0 flex-grow-1">
+            <div class="col-12 col-md-5 player-header text-center p-4 d-flex flex-column justify-content-center align-items-center">
+                <div class="w-100 d-flex justify-content-between align-items-center text-white-50 mb-3">
+                    <i class="bi bi-chevron-left fs-5"></i>
+                    <span class="text-uppercase tracking-wider small">ALBUM TRACKS</span>
+                    <i class="bi bi-list fs-4"></i>
+                </div>
+
+                <h2 class="album-title text-white fw-bold mb-1" id="albumName">912 Album</h2>
+                <p class="album-artist text-white-50 small mb-4" id="albumArtist">Singer#1</p>
+
+                <div class="cover-wrapper mx-auto position-relative">
+                    <div class="vinyl-record" id="vinylRecord"></div>
+                    <img id="albumCover" src="images/cover.jpg" alt="Album Cover" class="album-cover img-fluid shadow">
+                </div>
+
+                <div class="mt-4 text-white-50 small">
+                    <span>TOTAL DURATION: </span>
+                    <span id="totalDuration" class="fw-bold text-white">Calculating...</span>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-7 playlist-container p-3 d-flex flex-column justify-content-center">
+                <div id="playlist" class="list-group list-group-flush"></div>
+            </div>
+        </div>
+
+        <div class="player-controls-panel p-3 border-top border-secondary text-white">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <div class="text-truncate me-2">
+                    <div id="currentTrackTitle" class="fw-bold small text-truncate">Select a track</div>
+                    <div id="currentTrackArtist" class="text-white-50 extra-small" style="font-size: 0.75rem;">-</div>
+                </div>
+                <div class="d-flex align-items-center gap-2 volume-control">
+                    <i class="bi bi-volume-up-fill text-white-50"></i>
+                    <input type="range" id="volumeSlider" class="form-range" min="0" max="1" step="0.01" value="1">
+                </div>
+            </div>
+
+            <div class="d-flex align-items-center gap-2 mb-2">
+                <span id="currentTime" class="time-label text-white-50">0:00</span>
+                <input type="range" id="progressSlider" class="form-range flex-grow-1" min="0" max="100" value="0">
+                <span id="durationTime" class="time-label text-white-50">0:00</span>
+            </div>
+
+            <div class="d-flex justify-content-center align-items-center gap-4">
+                <button class="control-btn" id="prevBtn"><i class="bi bi-skip-backward-fill fs-5"></i></button>
+                <button class="control-btn play-main-btn" id="playPauseBtn"><i class="bi bi-play-fill fs-3"></i></button>
+                <button class="control-btn" id="nextBtn"><i class="bi bi-skip-forward-fill fs-5"></i></button>
+            </div>
+        </div>
+
+        <audio id="audioPlayer"></audio>
+    </div>
+
+    <div class="modal fade" id="trackModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-white border-secondary">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title" id="modalTrackTitle">Track Details</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="modalCover" src="images/cover.jpg" class="img-fluid rounded mb-3 style-modal-img" alt="Cover">
+                    <h4 id="modalTitle" class="fw-bold mb-1"></h4>
+                    <p id="modalArtist" class="text-white-50 mb-2"></p>
+                    <p id="modalDuration" class="small text-info mb-0"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js" defer></script>
+</body>
+</html>

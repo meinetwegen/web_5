@@ -1,0 +1,184 @@
+body {
+    background-color: #0d131a;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    user-select: none;
+}
+
+.player-card {
+    width: 380px;
+    max-width: 95vw;
+    background: #111b27;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (min-width: 768px) {
+    .player-card {
+        width: 780px;
+    }
+}
+
+.player-header {
+    background: linear-gradient(180deg, #18283b 0%, #111b27 100%);
+}
+
+@media (min-width: 768px) {
+    .player-header {
+        border-right: 1px solid rgba(255, 255, 255, 0.05);
+    }
+}
+
+.cover-wrapper {
+    width: 160px;
+    height: 160px;
+}
+
+@media (min-width: 768px) {
+    .cover-wrapper {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+.album-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    position: relative;
+    z-index: 2;
+}
+
+.vinyl-record {
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, #222 25%, #000 26%, #111 35%, #000 36%, #222 65%, #000 66%);
+    border-radius: 50%;
+    position: absolute;
+    top: 5px;
+    right: -35px;
+    z-index: 1;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    transition: transform 0.5s ease;
+}
+
+@media (min-width: 768px) {
+    .vinyl-record {
+        width: 170px;
+        height: 170px;
+        right: -40px;
+    }
+}
+
+.vinyl-rotating {
+    animation: rotateVinyl 3s linear infinite;
+}
+
+@keyframes rotateVinyl {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.playlist-container {
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+@media (min-width: 768px) {
+    .playlist-container {
+        max-height: 340px;
+    }
+}
+
+.playlist-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+.playlist-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+}
+
+.track-item {
+    background: transparent;
+    border: none;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+    cursor: pointer;
+}
+
+.track-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.track-item.active {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.track-icon-btn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    padding: 4px;
+    transition: color 0.2s;
+}
+
+.track-icon-btn:hover {
+    color: #fff;
+}
+
+.player-controls-panel {
+    background: #0d131a;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.control-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    padding: 0;
+    transition: color 0.2s, transform 0.1s;
+}
+
+.control-btn:hover {
+    color: #0dcaf0;
+}
+
+.control-btn:active {
+    transform: scale(0.95);
+}
+
+.play-main-btn {
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.play-main-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.time-label {
+    font-size: 0.75rem;
+    min-width: 35px;
+}
+
+.volume-control {
+    width: 100px;
+}
+
+.form-range {
+    cursor: pointer;
+}
+
+.style-modal-img {
+    max-height: 200px;
+    object-fit: cover;
+}
