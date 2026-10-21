@@ -16,44 +16,44 @@ body {
 
 .hero-status-card {
     position: absolute;
-    top: 30px;
-    left: 40px;
-    width: 150px;
+    top: 20px;
+    left: 20px;
+    width: 135px;
     background: #d4d0c8;
     border: 3px solid #000;
     box-shadow: 4px 4px 0px #000;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     z-index: 10;
 }
 
 .enemy-status-card {
     position: absolute;
-    top: 30px;
-    right: 40px;
-    width: 180px;
+    top: 20px;
+    right: 20px;
+    width: 135px;
     background: #d4d0c8;
     border: 3px solid #000;
     box-shadow: 4px 4px 0px #000;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     z-index: 10;
 }
 
 .status-header {
     background: #000;
     color: #fff;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     letter-spacing: 1px;
 }
 
 .enemy-sprite {
-    max-height: 40vh; 
+    max-height: 35vh; 
     width: auto;
     transition: transform 0.2s ease-in-out;
 }
 
 @media (min-width: 992px) {
     .enemy-sprite {
-        max-height: 65vh; 
+        max-height: 52vh; 
     }
 }
 
