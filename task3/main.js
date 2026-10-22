@@ -59,18 +59,20 @@ const bgMusic = document.getElementById('bgMusic');
 
 if (bgMusic) {
     bgMusic.volume = 0.4;
-    
-    const startAudio = () => {
+
+    const playAudio = () => {
         bgMusic.play().then(() => {
-            window.removeEventListener('click', startAudio);
-            window.removeEventListener('keydown', startAudio);
+            ['click', 'keydown', 'touchstart'].forEach(event => {
+                window.removeEventListener(event, playAudio);
+            });
         }).catch(err => {
-            console.log("Autoplay blocked or error:", err);
+            console.log("Autoplay waiting for user gesture:", err);
         });
     };
 
-    window.addEventListener('click', startAudio);
-    window.addEventListener('keydown', startAudio);
+    ['click', 'keydown', 'touchstart'].forEach(event => {
+        window.addEventListener(event, playAudio, { once: true });
+    });
 }
 
 mainClass.addEventListener('change', () => {
