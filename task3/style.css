@@ -1,0 +1,487 @@
+* {
+    font-family: "Kings", cursive, serif !important;
+}
+
+body {
+    background-image: url('images/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: #e2d9f3;
+    font-size: 1.3rem;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: rgba(12, 24, 13, 0.92);
+    border: 3px solid #5ce775;
+    padding: 25px;
+    box-shadow: 0 0 30px rgba(92, 231, 101, 0.4);
+}
+
+h1 {
+    font-size: 4rem;
+    letter-spacing: 2px;
+    text-align: center;
+    color: #9bfea5;
+    text-shadow: 2px 2px #1b4e1e;
+    margin-bottom: 15px;
+}
+
+.error-summary {
+    background: #3d1424;
+    border: 2px solid #ff7675;
+    color: #fab1a0;
+    padding: 12px;
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.d-none {
+    display: none !important;
+}
+
+.main-layout {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+form {
+    flex: 1;
+    min-width: 320px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+    opacity: 0;
+    transform: translateY(15px);
+    animation: fadeInField 0.5s ease forwards;
+}
+
+.form-group:nth-child(1) { animation-delay: 0.1s; }
+.form-group:nth-child(2) { animation-delay: 0.2s; }
+.form-group:nth-child(3) { animation-delay: 0.3s; }
+.form-group:nth-child(4) { animation-delay: 0.4s; }
+.form-group:nth-child(5) { animation-delay: 0.5s; }
+.form-group:nth-child(6) { animation-delay: 0.6s; }
+.form-group:nth-child(7) { animation-delay: 0.7s; }
+.form-group:nth-child(8) { animation-delay: 0.8s; }
+
+@keyframes fadeInField {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: #74b9ff;
+    font-size: 1.4rem;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+    cursor: pointer;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #dfe6e9;
+    font-size: 1.5rem;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    background: #1b2e1f;
+    border: 2px solid #5ce794;
+    color: #dfe9e2;
+    font-size: 1.4rem;
+    box-sizing: border-box;
+}
+
+input[aria-invalid="true"], select[aria-invalid="true"] {
+    border-color: #ff7675;
+    background: #2d1522;
+}
+
+.error-msg {
+    color: #ff7675;
+    font-size: 1.2rem;
+    margin-top: 4px;
+}
+
+.points-counter {
+    font-size: 1.4rem;
+    color: #74ff80;
+    margin-top: 6px;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: #5ce75c;
+    border: none;
+    color: #fff;
+    font-size: 1.8rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(92, 231, 94, 0.4);
+    transition: background 0.2s;
+}
+
+button[type="submit"]:hover {
+    background: #a29bfe;
+    color: #0f0c18;
+}
+
+.preview-panel {
+    background: #120f1f;
+    border: 2px solid #5ce76c;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.preview-container {
+    width: 380px;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+    border: 3px solid #9bfeb5;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dungeon-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('images/dungeon_bg.png');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+.aura-layer {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.aura-layer.active {
+    opacity: 0.9;
+    animation: rotateAura 12s linear infinite;
+}
+
+@keyframes rotateAura {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.sprite-layer {
+    position: absolute;
+    width: 340px;
+    height: 440px;
+    bottom: 10px;
+    z-index: 3;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    transition: background-image 0.3s ease;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modal-content {
+    position: relative;
+    width: 810px;
+    height: 540px;
+    max-width: 95vw;
+    max-height: 90vh;
+    background-image: url('images/parchment.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 60px 90px;
+    box-sizing: border-box;
+    color: #2c1d11;
+    animation: modalAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes modalAppear {
+    from {
+        transform: scale(0.6) rotate(-3deg);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 25px;
+    right: 85px;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: #4a2e18;
+    cursor: pointer;
+    line-height: 1;
+    z-index: 10;
+}
+
+.guild-seal {
+    position: absolute;
+    top: 80px;
+    right: 140px;
+    width: 140px;
+    height: 140px;
+    background-image: url('images/guild_seal.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.9;
+    transform: rotate(15deg);
+    pointer-events: none;
+    z-index: 5;
+}
+
+.parchment-sheet {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    height: 100%;
+    position: relative;
+}
+
+.modal-preview {
+    width: 260px;
+    height: 360px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 40px;
+}
+
+.modal-aura-layer {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    bottom: 70px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+    opacity: 0;
+}
+
+.modal-aura-layer.active {
+    opacity: 0.85;
+    animation: rotateAura 12s linear infinite;
+}
+
+.modal-sprite-layer {
+    position: absolute;
+    width: 250px;
+    height: 350px;
+    bottom: 50px;
+    z-index: 2;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+}
+
+.modal-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.modal-info h2 {
+    font-size: 2.3rem;
+    margin: 0 0 2px 0;
+    color: #3d1c06;
+    text-shadow: none;
+    text-align: left;
+    word-break: break-word;
+}
+
+.modal-class {
+    font-size: 1.2rem;
+    margin: 0 0 8px 0;
+    color: #5c3214;
+    font-weight: bold;
+}
+
+.modal-desc {
+    font-size: 1.05rem;
+    line-height: 1.15;
+    color: #2c1d11;
+    max-width: 250px;
+    margin-bottom: 12px;
+    margin-left: -20px;
+}
+
+.modal-stats {
+    display: flex;
+    gap: 8px;
+    max-width: 300px;
+    margin-left: -40px;
+}
+
+.modal-stat-box {
+    flex: 1;
+    background: rgba(74, 46, 24, 0.08);
+    border: 1px solid #5c3214;
+    padding: 4px;
+    text-align: center;
+}
+
+.modal-stat-box span {
+    display: block;
+    font-size: 0.85rem;
+    color: #5c3214;
+}
+
+.modal-stat-box strong {
+    font-size: 1.3rem;
+    color: #2c1d11;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .main-layout {
+        flex-direction: column;
+    }
+
+    form {
+        width: 100%;
+    }
+
+    .preview-panel {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .preview-container {
+        width: 100%;
+        height: 420px;
+    }
+
+    .modal-content {
+        width: 95vw;
+        height: auto;
+        min-height: 520px;
+        padding: 40px 25px;
+        background-size: 100% 100%;
+    }
+
+    .modal-close {
+        top: 15px;
+        right: 25px;
+    }
+
+    .guild-seal {
+        display: none;
+    }
+
+    .parchment-sheet {
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .modal-preview {
+        width: 100%;
+        height: 250px;
+        margin-left: 0;
+    }
+
+    .modal-aura-layer {
+        width: 200px;
+        height: 200px;
+        bottom: 10px;
+    }
+
+    .modal-sprite-layer {
+        width: 200px;
+        height: 240px;
+        bottom: 0;
+    }
+
+    .modal-info {
+        width: 100%;
+        padding-right: 0;
+        padding-top: 0;
+        align-items: center;
+        text-align: center;
+    }
+
+    .modal-info h2 {
+        font-size: 2.2rem;
+        text-align: center;
+    }
+
+    .modal-class {
+        font-size: 1.1rem;
+        text-align: center;
+    }
+
+    .modal-desc {
+        display: none;
+    }
+
+    .modal-stats {
+        width: 75%;
+        max-width: 75%;
+        margin-left: 0;
+        margin-right: 10px;
+        margin-bottom:40px;
+    }
+}

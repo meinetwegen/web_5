@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Fantasy Character Creator - Task 3</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kings&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>DARK FANTASY CHARACTER CREATOR</h1>
+        <div id="errorSummary" class="error-summary d-none" aria-live="polite"></div>
+        
+        <div class="main-layout">
+            <form id="charForm" novalidate>
+                <div class="form-group">
+                    <label for="charName">Character Name:</label>
+                    <input type="text" id="charName" aria-invalid="false">
+                    <div class="error-msg" id="charNameError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="mainClass">Main Class (Archetype):</label>
+                    <select id="mainClass" aria-invalid="false">
+                        <option value="">Select Main Class...</option>
+                        <option value="Knight">Knight</option>
+                        <option value="Mage">Mage</option>
+                        <option value="Rogue">Rogue</option>
+                        <option value="Alchemist">Alchemist</option>
+                    </select>
+                    <div class="error-msg" id="mainClassError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="subClass">Subclass (Branch):</label>
+                    <select id="subClass" aria-invalid="false" disabled>
+                        <option value="">Select Main Class First...</option>
+                    </select>
+                    <div class="error-msg" id="subClassError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="auraType">Aura Type:</label>
+                    <select id="auraType" aria-invalid="false" disabled>
+                        <option value="">Select Subclass First...</option>
+                    </select>
+                    <div class="error-msg" id="auraTypeError"></div>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" id="auraToggle"> Enable Aura Effect
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="strength">Strength (1-10):</label>
+                    <input type="number" id="strength" min="1" max="10" value="5" aria-invalid="false">
+                    <div class="error-msg" id="strengthError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="magic">Magic (1-10):</label>
+                    <input type="number" id="magic" min="1" max="10" value="5" aria-invalid="false">
+                    <div class="error-msg" id="magicError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="agility">Agility (1-10):</label>
+                    <input type="number" id="agility" min="1" max="10" value="5" aria-invalid="false">
+                    <div class="error-msg" id="agilityError"></div>
+                    <div class="points-counter">Total Points: <span id="totalPoints">15</span>/20</div>
+                </div>
+
+                <button type="submit" id="submitBtn">CREATE CHARACTER</button>
+            </form>
+
+            <div class="preview-panel">
+                <div class="preview-container" id="previewContainer">
+                    <div class="dungeon-bg"></div>
+                    <div class="aura-layer" id="previewAura"></div>
+                    <div class="sprite-layer" id="previewSprite"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalOverlay" class="modal-overlay d-none">
+        <div class="modal-content">
+            <button id="closeModal" class="modal-close">&times;</button>
+            <div class="guild-seal"></div>
+            <div class="parchment-sheet">
+                <div class="modal-preview">
+                    <div class="modal-aura-layer" id="modalAura"></div>
+                    <div class="modal-sprite-layer" id="modalSprite"></div>
+                </div>
+                <div class="modal-info">
+                    <h2 id="modalName">Hero Name</h2>
+                    <p class="modal-class" id="modalClass">Archetype - Subclass</p>
+                    <p class="modal-desc" id="modalDesc">Description goes here...</p>
+                    <div class="modal-stats">
+                        <div class="modal-stat-box"><span>STRENGTH</span><strong id="modalStr">0</strong></div>
+                        <div class="modal-stat-box"><span>MAGIC</span><strong id="modalMag">0</strong></div>
+                        <div class="modal-stat-box"><span>AGILITY</span><strong id="modalAgi">0</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+    <audio id="bgMusic" src="audio/ambient.mp3" loop preload="auto"></audio>
+</body>
+</html>
