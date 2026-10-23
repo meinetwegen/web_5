@@ -59,6 +59,8 @@ function calculateTotalDuration() {
 }
 
 function render() {
+    document.getElementById('albumName').textContent = playlistData.album;
+    document.getElementById('albumArtist').textContent = playlistData.artist;   
     playlistContainer.textContent = '';
 
     const filteredTracks = playlistData.tracks.filter(track => 
@@ -134,6 +136,7 @@ function render() {
         item.appendChild(rightDiv);
         playlistContainer.appendChild(item);
     });
+    playPauseBtn.querySelector('i').className = !audioPlayer.paused && currentTrackIndex !== -1 ? 'bi bi-pause-fill fs-3' : 'bi bi-play-fill fs-3';
 }
 
 playlistContainer.addEventListener('click', (event) => {

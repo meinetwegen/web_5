@@ -12,6 +12,7 @@ let enemyHp = MAX_HP;
 let healsLeft = MAX_HEALS;
 let isDefending = false;
 let isBusy = false;
+let logLines = [];
 
 const heroHpText = document.getElementById('heroHpText');
 const heroHpBar = document.getElementById('heroHpBar');
@@ -49,9 +50,9 @@ function updateUI() {
 }
 
 function pushLog(message) {
-    if (logBox) {
-        logBox.textContent = message;
-    }
+    logLines.push(message);
+    if (logLines.length > 5) logLines.shift();
+    logBox.textContent = logLines.join('\n');
 }
 
 function shakeElement(element) {
@@ -129,6 +130,7 @@ document.getElementById('attackBtn').addEventListener('click', () => {
     isBusy = true;
 
     let damage = getRandomInt(HERO_MIN_ATK, HERO_MAX_ATK);
+    if (Math.random() < CRIT_CHANCE) damage *= 2;
     
     enemyImage.src = 'images/enemy_hurt.png';
     shakeElement(enemyImage);
@@ -193,6 +195,7 @@ document.getElementById('restartBtn').addEventListener('click', () => {
     healsLeft = MAX_HEALS;
     isDefending = false;
     isBusy = false;
+    logLines = [];
     
     heroImage.src = 'images/omori.png';
     enemyImage.src = 'images/enemy.png';

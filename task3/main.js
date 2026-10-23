@@ -55,26 +55,6 @@ const allowedAurasMap = {
     "Mad Chemist": ["Arcane"]
 };
 
-const bgMusic = document.getElementById('bgMusic');
-
-if (bgMusic) {
-    bgMusic.volume = 0.4;
-
-    const playAudio = () => {
-        bgMusic.play().then(() => {
-            ['click', 'keydown', 'touchstart'].forEach(event => {
-                window.removeEventListener(event, playAudio);
-            });
-        }).catch(err => {
-            console.log("Autoplay waiting for user gesture:", err);
-        });
-    };
-
-    ['click', 'keydown', 'touchstart'].forEach(event => {
-        window.addEventListener(event, playAudio, { once: true });
-    });
-}
-
 mainClass.addEventListener('change', () => {
     const selectedMain = mainClass.value;
     subClass.innerHTML = '<option value="">Select Subclass...</option>';
@@ -92,7 +72,6 @@ mainClass.addEventListener('change', () => {
         });
     }
     updatePreview();
-    validateAll();
 });
 
 subClass.addEventListener('change', () => {
@@ -110,7 +89,6 @@ subClass.addEventListener('change', () => {
         });
     }
     updatePreview();
-    validateAll();
 });
 
 function calculateTotal() {
@@ -349,17 +327,32 @@ function validateAll() {
     return v1 && v2 && v3 && v4;
 }
 
+const validators = {
+    charName: validateName,
+    mainClass: validateClasses,
+    subClass: validateClasses,
+    auraType: validateAura,
+    strength: validateStats,
+    magic: validateStats,
+    agility: validateStats
+};
+const touched = new Set();
+
 [charName, mainClass, subClass, auraType, strength, magic, agility, auraToggle].forEach(el => {
     el.addEventListener('blur', () => {
-        validateAll();
+        touched.add(el.id);
+        if (validators[el.id]) validators[el.id]();
         updatePreview();
     });
     el.addEventListener('input', () => {
-        validateAll();
+        if (touched.has(el.id) && validators[el.id]) {
+            validators[el.id]();
+        }
         updatePreview();
     });
     el.addEventListener('change', () => {
-        validateAll();
+        touched.add(el.id);
+        if (validators[el.id]) validators[el.id]();
         updatePreview();
     });
 });
@@ -376,6 +369,7 @@ modalOverlay.addEventListener('click', (e) => {
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
+    ['charName', 'mainClass', 'subClass', 'auraType', 'strength', 'magic', 'agility'].forEach(id => touched.add(id));
     const isValid = validateAll();
     
     if (!isValid) {
@@ -414,6 +408,7 @@ form.addEventListener('submit', (e) => {
     auraType.disabled = true;
     auraType.innerHTML = '<option value="">Select Subclass First...</option>';
     updatePreview();
+    touched.clear();
 });
 
 updatePreview();

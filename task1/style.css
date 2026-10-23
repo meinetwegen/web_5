@@ -84,9 +84,10 @@ body {
 .omori-log {
     background-color: #111;
     border: 2px solid #555;
-    height: 45px;
+/*    height: 45px; */
     font-size: 0.95rem;
     overflow: hidden;
+    height: auto; white-space: pre-line;
 }
 
 .omori-action-btn {
